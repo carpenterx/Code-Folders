@@ -34,7 +34,7 @@
             </Button>
         </StackPanel>
 
-        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}">
+        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="4">
@@ -43,6 +43,11 @@
                     </StackPanel>
                     </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItemClickPreview" />
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">

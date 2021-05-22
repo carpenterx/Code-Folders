@@ -4,6 +4,8 @@ using System.Windows;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Code_Folders
 {
@@ -50,6 +52,16 @@ namespace Code_Folders
             if(foldersListView.SelectedIndex != -1)
             {
                 foldersList.RemoveAt(foldersListView.SelectedIndex);
+            }
+        }
+
+        private void ListViewItemClickPreview(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                CodeFolder selectedFolder = (CodeFolder) item.DataContext;
+                Process.Start("explorer.exe", selectedFolder.Path);
             }
         }
     }

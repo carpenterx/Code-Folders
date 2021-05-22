@@ -7,5 +7,5 @@ Simple application for managing project folders
 - [X] click "open" button to open the selected folder in explorer
 - [X] CTRL + CLICK to open folder directly
 - [X] click "delete" button to delete the selected folder
-- [ ] save the list of folders on exit
-- [ ] load the list of folders on startup
+- [X] save the list of folders on exit
+- [X] load the list of folders on startup

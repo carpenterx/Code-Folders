@@ -46,7 +46,7 @@
         </ListView>
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Open"/>
+            <Button Content="Open" Click="OpenFolderClick"/>
             <TextBox Text="Searh term"/>
             <Button Content="Search"/>
             <Button Content="Delete"/>

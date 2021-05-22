@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Code_Folders
 {
@@ -33,6 +34,12 @@ namespace Code_Folders
             {
                 foldersList.Add(new CodeFolder { Path = dialog.FileName });
             }
+        }
+
+        private void OpenFolderClick(object sender, RoutedEventArgs e)
+        {
+            CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
+            Process.Start("explorer.exe", selectedFolder.Path);
         }
     }
 }

@@ -38,8 +38,19 @@ namespace Code_Folders
 
         private void OpenFolderClick(object sender, RoutedEventArgs e)
         {
-            CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
-            Process.Start("explorer.exe", selectedFolder.Path);
+            if(foldersListView.SelectedItem != null)
+            {
+                CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
+                Process.Start("explorer.exe", selectedFolder.Path);
+            }
+        }
+
+        private void DeleteFolderClick(object sender, RoutedEventArgs e)
+        {
+            if(foldersListView.SelectedIndex != -1)
+            {
+                foldersList.RemoveAt(foldersListView.SelectedIndex);
+            }
         }
     }
 }

@@ -29,7 +29,7 @@
             <Button>
                 <iconPacks:PackIconMaterial Kind="TagOutline" />
             </Button>
-            <Button>
+            <Button Click="DeleteFolderClick">
                 <iconPacks:PackIconMaterial Kind="TrashCanOutline" />
             </Button>
         </StackPanel>

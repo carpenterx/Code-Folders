@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Button>
+            <Button Click="BrowseToFolderClick">
                 <iconPacks:PackIconMaterial Kind="FolderPoundOutline" />
             </Button>
             <Button>
@@ -34,55 +34,16 @@
             </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="1">
-            <Button HorizontalContentAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="FolderHomeOutline" />
-                    <TextBlock Text="C:\Users\jorda\Desktop"/>
-                    <iconPacks:PackIconMaterial Kind="OpenInNew" />
-                </StackPanel>
-            </Button>
-            <Button HorizontalContentAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="SubdirectoryArrowRight" />
-                    <TextBlock Text="C:\Users\jorda\Desktop\Icons Tester"/>
-                    <iconPacks:PackIconMaterial Kind="OpenInNew" />
-                </StackPanel>
-            </Button>
-
-            <Button HorizontalContentAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="SubdirectoryArrowRight" />
-                    <TextBlock Text="C:\Users\jorda\Desktop\Icons Tester"/>
-                    <iconPacks:PackIconMaterial Kind="OpenInNew" />
-                </StackPanel>
-
-            </Button>
-            <Button HorizontalContentAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="FolderOutline" />
-                    <TextBlock Text="C:\Users\jorda\Desktop\Icons Tester"/>
-                    <iconPacks:PackIconMaterial Kind="OpenInNew" />
-                </StackPanel>
-
-            </Button>
-            <Button HorizontalContentAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="CodeTags" />
-                    <TextBlock Text="C:\Users\jorda\Desktop\Icons Tester"/>
-                    <iconPacks:PackIconMaterial Kind="OpenInNew" />
-                </StackPanel>
-
-            </Button>
-            <Button HorizontalContentAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="CodeTags" />
-                    <TextBlock Text="C:\Users\jorda\Desktop\Icons Tester"/>
-                    <iconPacks:PackIconMaterial Kind="OpenInNew" />
-                </StackPanel>
-
-            </Button>
-        </StackPanel>
+        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <iconPacks:PackIconMaterial Kind="FolderOutline" Margin="0,0,4,0" />
+                        <TextBlock  Text="{Binding Path}" />
+                    </StackPanel>
+                    </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Open"/>

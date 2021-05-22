@@ -43,7 +43,7 @@ namespace Code_Folders
             if(foldersListView.SelectedItem != null)
             {
                 CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
-                Process.Start("explorer.exe", selectedFolder.Path);
+                OpenFolderPathInExplorer(selectedFolder);
             }
         }
 
@@ -61,8 +61,13 @@ namespace Code_Folders
             if (item != null && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
                 CodeFolder selectedFolder = (CodeFolder) item.DataContext;
-                Process.Start("explorer.exe", selectedFolder.Path);
+                OpenFolderPathInExplorer(selectedFolder);
             }
+        }
+
+        private void OpenFolderPathInExplorer(CodeFolder codeFolder)
+        {
+            Process.Start("explorer.exe", codeFolder.Path);
         }
     }
 }

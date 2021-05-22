@@ -20,17 +20,32 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Button Click="BrowseToFolderClick">
-                <iconPacks:PackIconMaterial Kind="FolderPoundOutline" />
+            <Button Click="BrowseToFolderClick" Margin="2">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="FolderPoundOutline" Width="20" Height="20" VerticalAlignment="Center" />
+                    <Label Content="Add" />
+                </StackPanel>
             </Button>
-            <Button>
+            <!--<Button>
                 <iconPacks:PackIconMaterial Kind="FolderMultiplePlusOutline" />
+            </Button>-->
+            <Button Click="OpenFolderClick" Margin="2">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="FolderOpenOutline" Width="20" Height="20" VerticalAlignment="Center" />
+                    <Label Content="Open" />
+                </StackPanel>
             </Button>
-            <Button>
+            <!--<Button>
                 <iconPacks:PackIconMaterial Kind="TagOutline" />
-            </Button>
-            <Button Click="DeleteFolderClick">
+            </Button>-->
+            <!--<Button Click="DeleteFolderClick">
                 <iconPacks:PackIconMaterial Kind="TrashCanOutline" />
+            </Button>-->
+            <Button Click="DeleteFolderClick" Margin="2">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="TrashCanOutline" Width="20" Height="20" VerticalAlignment="Center" />
+                    <Label Content="Delete" />
+                </StackPanel>
             </Button>
         </StackPanel>
 
@@ -50,17 +65,15 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <!--<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Open" Click="OpenFolderClick"/>
             <TextBox Text="Searh term"/>
             <Button Content="Search"/>
             <Button Content="Delete"/>
-        </StackPanel>
+        </StackPanel>-->
 
-        <TextBox Grid.Row="1" Grid.Column="1" Text="Notes go here">
-            
-        </TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" d:Text="Notes go here" />
 
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="#tag1 #tag2 #tag3"/>
+        <!--<TextBlock Grid.Row="2" Grid.Column="1" Text="#tag1 #tag2 #tag3"/>-->
     </Grid>
 </Window>

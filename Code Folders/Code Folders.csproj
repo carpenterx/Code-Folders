@@ -5,6 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>Code_Folders</RootNamespace>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Papirus-Team-Papirus-Places-Folder-green-script.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

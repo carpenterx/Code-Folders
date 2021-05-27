@@ -5,5 +5,5 @@ Simple application for managing project folders
 - click "Add" to add folders to the project folders list (supports multi select)
 - click "Open" button to open the selected folder in explorer
 - click "Delete" to delete the selected folder
-- CTRL + CLICK to open folder directly
-- LEFT SHIFT + CLICK to copy the folder name to the clipboard
+- <kbd>CTRL</kbd> + <kbd>CLICK</kbd> to open folder directly
+- <kbd>LEFT SHIFT</kbd> + <kbd>CLICK</kbd> to copy the folder name to the clipboard

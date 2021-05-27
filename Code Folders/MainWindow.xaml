@@ -1,13 +1,16 @@
-﻿<Window x:Class="Code_Folders.MainWindow"
+﻿ <Window x:Class="Code_Folders.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Code_Folders" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:models="clr-namespace:Code_Folders.Models"
         mc:Ignorable="d"
         Title="Code Folders" Height="450" Width="800" Closing="SaveListOnClosing">
-    <Grid>
-
+    <Window.Resources>
+        <models:PathToFolderNameConverter x:Key="PathToFolderNameConverter"/>
+    </Window.Resources>
+    <Grid Margin="4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -19,9 +22,9 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Click="BrowseToFolderClick" Margin="2">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="4">
                     <iconPacks:PackIconMaterial Kind="FolderPoundOutline" Width="20" Height="20" VerticalAlignment="Center" />
                     <Label Content="Add" />
                 </StackPanel>
@@ -30,7 +33,7 @@
                 <iconPacks:PackIconMaterial Kind="FolderMultiplePlusOutline" />
             </Button>-->
             <Button Click="OpenFolderClick" Margin="2">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="4">
                     <iconPacks:PackIconMaterial Kind="FolderOpenOutline" Width="20" Height="20" VerticalAlignment="Center" />
                     <Label Content="Open" />
                 </StackPanel>
@@ -42,19 +45,19 @@
                 <iconPacks:PackIconMaterial Kind="TrashCanOutline" />
             </Button>-->
             <Button Click="DeleteFolderClick" Margin="2">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="4">
                     <iconPacks:PackIconMaterial Kind="TrashCanOutline" Width="20" Height="20" VerticalAlignment="Center" />
                     <Label Content="Delete" />
                 </StackPanel>
             </Button>
         </StackPanel>
 
-        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single">
+        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="4">
                         <iconPacks:PackIconMaterial Kind="FolderOutline" Margin="0,0,4,0" />
-                        <TextBlock  Text="{Binding Path}" />
+                        <TextBlock Text="{Binding Path, Mode=OneWay, Converter={StaticResource PathToFolderNameConverter}}" />
                     </StackPanel>
                     </DataTemplate>
             </ListView.ItemTemplate>

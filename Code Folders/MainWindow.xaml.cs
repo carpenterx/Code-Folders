@@ -17,8 +17,8 @@ namespace Code_Folders
     public partial class MainWindow : Window
     {
         private ObservableCollection<CodeFolder> foldersList = new();
-        private static string APPLICATION_FOLDER = "Code Folders";
-        private static string APPLICATION_DATA_FILE = "data.json";
+        private static readonly string APPLICATION_FOLDER = "Code Folders";
+        private static readonly string APPLICATION_DATA_FILE = "data.json";
 
         public MainWindow()
         {
@@ -42,11 +42,15 @@ namespace Code_Folders
         {
             CommonOpenFileDialog dialog = new()
             {
-                IsFolderPicker = true
+                IsFolderPicker = true,
+                Multiselect = true
             };
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                foldersList.Add(new CodeFolder { Path = dialog.FileName });
+                foreach (var fileName in dialog.FileNames)
+                {
+                    foldersList.Add(new CodeFolder { Path = fileName });
+                }
             }
         }
 
@@ -55,7 +59,7 @@ namespace Code_Folders
             if(foldersListView.SelectedItem != null)
             {
                 CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
-                OpenFolderPathInExplorer(selectedFolder);
+                OpenFolderPathInExplorer(selectedFolder.Path);
             }
         }
 
@@ -70,16 +74,25 @@ namespace Code_Folders
         private void ListViewItemClickPreview(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
-            if (item != null && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            if (item != null)
             {
-                CodeFolder selectedFolder = (CodeFolder) item.DataContext;
-                OpenFolderPathInExplorer(selectedFolder);
+                CodeFolder selectedFolder = (CodeFolder)item.DataContext;
+                string selectedPath = selectedFolder.Path;
+                if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                {
+                    
+                    OpenFolderPathInExplorer(selectedPath);
+                }
+                else if(Keyboard.IsKeyDown(Key.LeftShift))
+                {
+                    Clipboard.SetText(Path.GetFileName(selectedPath));
+                }
             }
         }
 
-        private void OpenFolderPathInExplorer(CodeFolder codeFolder)
+        private void OpenFolderPathInExplorer(string path)
         {
-            Process.Start("explorer.exe", codeFolder.Path);
+            Process.Start("explorer.exe", path);
         }
 
         private void SaveListOnClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -92,6 +105,22 @@ namespace Code_Folders
             }
             string dataFilePath = Path.Combine(dataFileRoot, APPLICATION_DATA_FILE);
             File.WriteAllText(dataFilePath, json);
+        }
+
+        private void AddDroppedFolders(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (var path in files)
+                {
+                    if(Directory.Exists(path))
+                    {
+                        foldersList.Add(new CodeFolder { Path = path });
+                    }
+                }
+            }
         }
     }
 }

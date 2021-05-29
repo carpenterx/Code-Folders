@@ -52,7 +52,7 @@
             </Button>
         </StackPanel>
 
-        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders">
+        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders" SelectionChanged="ListViewItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="4">
@@ -75,7 +75,7 @@
             <Button Content="Delete"/>
         </StackPanel>-->
 
-        <TextBox Grid.Row="1" Grid.Column="1" d:Text="Notes go here" />
+        <TextBox x:Name="readmeTxt" Grid.Row="1" Grid.Column="1" d:Text="Notes go here" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
 
         <!--<TextBlock Grid.Row="2" Grid.Column="1" Text="#tag1 #tag2 #tag3"/>-->
     </Grid>

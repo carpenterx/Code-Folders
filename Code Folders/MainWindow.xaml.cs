@@ -19,6 +19,7 @@ namespace Code_Folders
         private ObservableCollection<CodeFolder> foldersList = new();
         private static readonly string APPLICATION_FOLDER = "Code Folders";
         private static readonly string APPLICATION_DATA_FILE = "data.json";
+        private static readonly string README_FILE = "readme.md";
 
         public MainWindow()
         {
@@ -120,6 +121,20 @@ namespace Code_Folders
                         foldersList.Add(new CodeFolder { Path = path });
                     }
                 }
+            }
+        }
+
+        private void ListViewItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            CodeFolder selectedFolder = (sender as ListView).SelectedItem as CodeFolder;
+            string readmePath = Path.Combine(selectedFolder.Path, README_FILE);
+            if (File.Exists(readmePath))
+            {
+                readmeTxt.Text = File.ReadAllText(readmePath);
+            }
+            else
+            {
+                readmeTxt.Text = selectedFolder.Path;
             }
         }
     }

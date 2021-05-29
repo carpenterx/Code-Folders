@@ -38,6 +38,12 @@
                     <Label Content="Open" />
                 </StackPanel>
             </Button>
+            <Button Click="OpenGithubLocalClick" Margin="2">
+                <StackPanel Orientation="Horizontal" Margin="4">
+                    <iconPacks:PackIconMaterial Kind="Github" Width="20" Height="20" VerticalAlignment="Center" />
+                    <Label Content="Github" />
+                </StackPanel>
+            </Button>
             <!--<Button>
                 <iconPacks:PackIconMaterial Kind="TagOutline" />
             </Button>-->

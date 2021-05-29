@@ -137,5 +137,15 @@ namespace Code_Folders
                 readmeTxt.Text = selectedFolder.Path;
             }
         }
+
+        private void OpenGithubLocalClick(object sender, RoutedEventArgs e)
+        {
+            if (foldersListView.SelectedItem != null)
+            {
+                CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
+                string githubLocalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GitHubDesktop", "GitHubDesktop.exe");
+                Process.Start(githubLocalPath, selectedFolder.Path);
+            }
+        }
     }
 }

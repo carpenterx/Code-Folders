@@ -81,7 +81,7 @@
             <Button Content="Delete"/>
         </StackPanel>-->
 
-        <TextBox x:Name="readmeTxt" Grid.Row="1" Grid.Column="1" d:Text="Notes go here" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+        <TextBox x:Name="readmeTxt" Grid.Row="1" Grid.Column="1" d:Text="Notes go here" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="2" />
 
         <!--<TextBlock Grid.Row="2" Grid.Column="1" Text="#tag1 #tag2 #tag3"/>-->
     </Grid>

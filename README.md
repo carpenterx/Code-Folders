@@ -1,4 +1,4 @@
-# Code-Folders
+# Code Folders
 Simple application for managing project folders
 
 ### Instructions:

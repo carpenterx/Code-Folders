@@ -58,7 +58,7 @@
             </Button>
         </StackPanel>
 
-        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders" SelectionChanged="ListViewItemSelected">
+        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders" SelectionChanged="ListViewItemSelected" ScrollViewer.CanContentScroll="False">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="4">

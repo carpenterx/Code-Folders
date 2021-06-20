@@ -143,8 +143,40 @@ namespace Code_Folders
             if (foldersListView.SelectedItem != null)
             {
                 CodeFolder selectedFolder = (CodeFolder)foldersListView.SelectedItem;
-                string githubLocalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GitHubDesktop", "GitHubDesktop.exe");
-                Process.Start(githubLocalPath, selectedFolder.Path);
+                string githubLocalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"GitHubDesktop\bin\", "github.bat");
+                RunProcess(githubLocalPath, selectedFolder.Path);
+            }
+        }
+
+        private void RunProcess(string exePath, string filePath)
+        {
+            string directory = exePath;
+            string folderName = filePath;
+            if (folderName.Contains(" "))
+            {
+                folderName = $"\"{folderName}\"";
+            }
+
+            try
+            {
+                var psi = new ProcessStartInfo();
+                psi.FileName = directory;
+                psi.Arguments = folderName;
+                psi.UseShellExecute = false;
+                psi.CreateNoWindow = true;
+                psi.RedirectStandardOutput = true;
+
+                using var process = Process.Start(psi);
+
+                //using StreamReader reader = process.StandardOutput;
+                //string data = reader.ReadToEnd();
+                //File.WriteAllText(@"C:\Users\jorda\Desktop\output.txt", data);
+
+                process.WaitForExit();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
     }

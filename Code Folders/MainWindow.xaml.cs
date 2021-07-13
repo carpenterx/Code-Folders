@@ -126,15 +126,18 @@ namespace Code_Folders
 
         private void ListViewItemSelected(object sender, SelectionChangedEventArgs e)
         {
-            CodeFolder selectedFolder = (sender as ListView).SelectedItem as CodeFolder;
-            string readmePath = Path.Combine(selectedFolder.Path, README_FILE);
-            if (File.Exists(readmePath))
+            ListView listView = sender as ListView;
+            if (listView.SelectedItem is CodeFolder selectedFolder)
             {
-                readmeTxt.Text = File.ReadAllText(readmePath);
-            }
-            else
-            {
-                readmeTxt.Text = selectedFolder.Path;
+                string readmePath = Path.Combine(selectedFolder.Path, README_FILE);
+                if (File.Exists(readmePath))
+                {
+                    readmeTxt.Text = File.ReadAllText(readmePath);
+                }
+                else
+                {
+                    readmeTxt.Text = selectedFolder.Path;
+                }
             }
         }
 

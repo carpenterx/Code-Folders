@@ -6,6 +6,7 @@
          xmlns:local="clr-namespace:Code_Folders"
          xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
          xmlns:models="clr-namespace:Code_Folders.Models"
+         xmlns:dd="urn:gong-wpf-dragdrop"
          mc:Ignorable="d"
          Title="Code Folders"
          Height="450" Width="800"
@@ -61,7 +62,7 @@
             </Button>
         </StackPanel>
 
-        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders" SelectionChanged="ListViewItemSelected" ScrollViewer.CanContentScroll="False">
+        <ListView x:Name="foldersListView" Grid.Row="1" ItemsSource="{Binding}" SelectionMode="Single" AllowDrop="True" Drop="AddDroppedFolders" SelectionChanged="ListViewItemSelected" ScrollViewer.CanContentScroll="False" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="4">
